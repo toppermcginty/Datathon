@@ -55,28 +55,23 @@
           <option value="L">L - none</option>
         </select>
 
-        <label for="fam-hist">Family History:</label>
-        <select id="fam-hist" name="fam-hist" required>
+        <label for="symp">Symptoms:</label>
+        <select id="symp" name="symp" required>
           <option value="">Select</option>
-          <option value="A">A - No family history</option>
-          <option value="B">B - Distant relative</option>
-          <option value="C">C - Immediate family member</option>
-        </select>
-
-        <label for="HRT-BC">Hormonal Replacement Therapy (HRT) or Birth Control:</label>
-        <select id="HRT-BC" name="HRT-BC" required>
-          <option value="">Select</option>
-          <option value="A">A - Never used</option>
-          <option value="B">B - Previously used</option>
-          <option value="C">C - Currently using</option>
+          <option value="A">A - family history of breast cancer</option>
+          <option value="B">B - nipple discharge</option>
+          <option value="C">C - jormonal replacement therapy (HRT)</option>
+          <option value="D">D - hormonal contraceptive</option>
+          <option value="E">E - nipple discharge & family history of breast/ovarian cancer</option>
         </select>
 
         <label for="shape">Shape:</label>
         <select id="shape" name="shape" required>
           <option value="">Select</option>
-          <option value="A">A - Round</option>
-          <option value="B">B - Oval</option>
-          <option value="C">C - Irregular</option>
+          <option value="A">A - oval</option>
+          <option value="B">B - round</option>
+          <option value="C">C - irregular</option>
+          <option value="D">D - not applicable</option>
         </select>
 
         <button type="submit">Predict Risk</button>
