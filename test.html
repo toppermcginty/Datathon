@@ -8,7 +8,7 @@
 </head>
 <body>
   <header>
-    <h1>Risk Test</h1>
+    <h1>Verification Test</h1>
   </header>
 
   <nav>
@@ -22,6 +22,15 @@
     <section>
       <h2>Enter Patient Information</h2>
       <form>
+
+        <label for="patient-type">Patient Category:</label>
+        <select id="patient-type" name="patient-type" required>
+          <option value="">Select</option>
+          <option value="screening">Routine Screening</option>
+          <option value="symptomatic">Symptomatic Patient</option>
+          <option value="followup">Follow-up Examination</option>
+        </select>
+
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" required />
 
