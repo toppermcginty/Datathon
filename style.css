@@ -1,12 +1,12 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Raleway, sans-serif;
   margin: 0;
   background: #f9f9fb;
   color: #222;
 }
 
 header {
-  background: #c2185b;
+  background: #f59fe9;
   color: white;
   text-align: center;
   padding: 2rem 1rem;
@@ -16,7 +16,7 @@ nav {
   display: flex;
   justify-content: center;
   gap: 20px;
-  background: #eee;
+  background: #f5c2e7;
   padding: 1rem;
 }
 
