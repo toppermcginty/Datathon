@@ -26,19 +26,45 @@
         <input type="number" id="age" name="age" required />
 
         <label for="tissue-composition">Tissue Composition:</label>
-        <input type="number" id="tissue-composition" name="tissue-composition" required />
+        <select id="tissue-composition" name="tissue-composition" required>
+          <option value="">Select</option>
+          <option value="A">A - Mostly Fatty</option>
+          <option value="B">B - Scattered Density</option>
+          <option value="C">C - Heterogeneously Dense</option>
+          <option value="D">D - Extremely Dense</option>
+        </select>
 
         <label for="visual-signs">Visual Signs:</label>
-        <input type="number" id="visual-signs" name="visual-signs" required />
+        <select id="visual-signs" name="visual-signs" required>
+          <option value="">Select</option>
+          <option value="A">A - None</option>
+          <option value="B">B - Minor irregularities</option>
+          <option value="C">C - Suspicious signs</option>
+        </select>
 
         <label for="fam-hist">Family History:</label>
-        <input type="number" id="fam-hist" name="fam-hist" required />
+        <select id="fam-hist" name="fam-hist" required>
+          <option value="">Select</option>
+          <option value="A">A - No family history</option>
+          <option value="B">B - Distant relative</option>
+          <option value="C">C - Immediate family member</option>
+        </select>
 
         <label for="HRT-BC">Hormonal Replacement Therapy (HRT) or Birth Control:</label>
-        <input type="number" id="HRT-BC" name="HRT-BC" required />
-        
+        <select id="HRT-BC" name="HRT-BC" required>
+          <option value="">Select</option>
+          <option value="A">A - Never used</option>
+          <option value="B">B - Previously used</option>
+          <option value="C">C - Currently using</option>
+        </select>
+
         <label for="shape">Shape:</label>
-        <input type="number" id="shape" name="shape" required />
+        <select id="shape" name="shape" required>
+          <option value="">Select</option>
+          <option value="A">A - Round</option>
+          <option value="B">B - Oval</option>
+          <option value="C">C - Irregular</option>
+        </select>
 
         <button type="submit">Predict Risk</button>
       </form>
