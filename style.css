@@ -6,7 +6,7 @@ body {
 }
 
 header {
-  background-image: url("pink-ribbon-scaled1.jpg"); /* path to image */
+  background-image: url("pink-ribbon-scaled2.webp"); /* path to image */
   background-size: cover;       /* makes image fill the header */
   background-position: center;  /* centers the image */
   background-repeat: no-repeat; /* prevents tiling */
