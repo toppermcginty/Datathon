@@ -10,7 +10,46 @@
   <header>
     <h1>Verification Test</h1>
   </header>
+  <script>
+const dropZone = document.getElementById("drop-zone");
+const fileInput = document.getElementById("image-upload");
+const preview = document.getElementById("preview");
 
+dropZone.addEventListener("click", () => fileInput.click());
+
+fileInput.addEventListener("change", function() {
+  displayImage(this.files[0]);
+});
+
+dropZone.addEventListener("dragover", function(e) {
+  e.preventDefault();
+  dropZone.classList.add("dragover");
+});
+
+dropZone.addEventListener("dragleave", function() {
+  dropZone.classList.remove("dragover");
+});
+
+dropZone.addEventListener("drop", function(e) {
+  e.preventDefault();
+  dropZone.classList.remove("dragover");
+  
+  const file = e.dataTransfer.files[0];
+  fileInput.files = e.dataTransfer.files;
+  
+  displayImage(file);
+});
+
+function displayImage(file) {
+  preview.innerHTML = "";
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(file);
+  img.style.maxWidth = "300px";
+  img.style.marginTop = "10px";
+  preview.appendChild(img);
+}
+</script>
+  
   <nav>
     <a href="index.html">Home</a>
     <a href="test.html">Test</a>
@@ -20,7 +59,14 @@
 
   <main>
     <section>
-      <h2>Enter Patient Information</h2>
+      <label for="image-upload">Upload Mammogram Image:</label>
+
+      <div id="drop-zone">
+        <p>Drag & drop an image here or click to upload</p>
+        <input type="file" id="image-upload" name="image-upload" accept="image/*">
+      </div>
+
+      <div id="preview"></div>
       <form>
 
         <label for="age">Age:</label>
