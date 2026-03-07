@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test | Breast Cancer Risk Prediction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Risk Test</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="test.html">Test</a>
+    <a href="research.html">Research</a>
+    <a href="team.html">Team</a>
+  </nav>
+
+  <main>
+    <section>
+      <h2>Enter Patient Information</h2>
+      <form>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required />
+
+        <label for="family-history">Family History:</label>
+        <select id="family-history" name="family-history">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+
+        <label for="mass-size">Tumor/Mass Size (if applicable):</label>
+        <input type="text" id="mass-size" name="mass-size" />
+
+        <button type="submit">Predict Risk</button>
+      </form>
+
+      <p class="note">
+        This tool is for educational/research purposes only and does not replace medical advice.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Breast Cancer Risk Project</p>
+  </footer>
+</body>
+</html>
