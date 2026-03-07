@@ -93,3 +93,23 @@ footer {
   background: #eee;
   margin-top: 2rem;
 }
+#drop-zone {
+  border: 2px dashed #c2185b;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #fafafa;
+}
+
+#drop-zone.dragover {
+  background: #ffe6f0;
+}
+
+#image-upload {
+  display: none;
+}
+
+#preview img {
+  border-radius: 8px;
+}
