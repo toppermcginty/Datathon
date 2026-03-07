@@ -1,7 +1,7 @@
 body {
   font-family: Raleway, sans-serif;
   margin: 0;
-  background: #222;
+  background: #f9f9fb;
   color: #222;
 }
 
@@ -10,7 +10,7 @@ header {
   background-size: cover;       /* makes image fill the header */
   background-position: center;  /* centers the image */
   background-repeat: no-repeat; /* prevents tiling */
-  color: #222;                 /* makes text visible */
+  color: #fafafa;                 /* makes text visible */
   padding: 80px 20px;           /* increases header height */
   text-align: center;
 }
