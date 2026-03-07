@@ -25,10 +25,14 @@
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" required />
 
-        <label for="family-history">Family History:</label>
-        <select id="family-history" name="family-history">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+        <label for="area">Approximate area(cm) of cancer:</label>
+        <select id="area" name="area">
+          <option value="<50">50s</option>
+          <option value="49> area > 40">40s</option>
+          <option value="39> area > 30">30s</option>
+          <option value="29> area > 20">20s</option>
+          <option value="19> area > 10">10s</option>
+          <option value="9> area > 0.1">40s</option>
         </select>
 
         <label for="mass-size">Tumor/Mass Size (if applicable):</label>
