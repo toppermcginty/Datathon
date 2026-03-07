@@ -36,47 +36,61 @@
 
         <br>
 
+        <label for="size">Size (mm):</label>
+        <input type="number" id="size" name="size" required />
+
         <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required />
-
-        <label for="tissue-composition">Tissue Composition:</label>
-        <select id="tissue-composition" name="tissue-composition" required>
+        <select id="age" name="age" required>
           <option value="">Select</option>
-          <option value="A">A - heterogeneous: predominantly fat</option>
-          <option value="B">B - heterogeneous: fibroglandular</option>
-          <option value="C">C - heterogeneous: predominantly fibroglandular</option>
-          <option value="D">D - homogeneous: fat</option>
-          <option value="E">E - homogeneous: fibroglandular</option>
-          <option value="F">F - lactating</option>
-          <option value="G">G - lactating & homogeneous: fibroglandular</option>
+          <option value="A">A - > 50 years old</option>
+          <option value="B">B - 40–50 years old</option>
+          <option value="C">C - < 40 years old</option>
         </select>
 
-        <label for="visual-signs">Visual Signs:</label>
-        <select id="visual-signs" name="visual-signs" required>
+        <label for="tumour-edge">Tumour Edge:</label>
+        <select id="tumour-edge" name="tumour-edge" required>
           <option value="">Select</option>
-          <option value="A">A - breast scar</option>
-          <option value="B">B - nipple retraction & palpable</option>
-          <option value="C">C - palpable</option>
-          <option value="D">D - breast scar & skin retraction</option>
-          <option value="E">E - nipple retraction</option>
-          <option value="F">F - peau d'orange & palpable</option>
-          <option value="G">G - warmth & palpable</option>
-          <option value="H">H - redness, warmth & palpable</option>
-          <option value="I">I - redness & warmth</option>
-          <option value="J">J - palpable & breast scar</option>
-          <option value="K">K - skin retraction & palpable</option>
-          <option value="L">L - none</option>
+          <option value="A">A - Irregular edges (not circumscribed - indistinct)</option>
+          <option value="B">B - Smoothly defined edges (circumscribed)</option>
         </select>
 
-        <label for="symp">Symptoms:</label>
-        <select id="symp" name="symp" required>
+        <label for="fam-hist">Family History:</label>
+        <select id="fam-hist" name="fam-hist" required>
           <option value="">Select</option>
-          <option value="A">A - family history of breast cancer</option>
-          <option value="B">B - nipple discharge</option>
-          <option value="C">C - hormonal replacement therapy (HRT)</option>
-          <option value="D">D - hormonal contraceptive</option>
-          <option value="E">E - nipple discharge & family history of breast/ovarian cancer</option>
+          <option value="A">A - None</option>
+          <option value="B">B - Family history of Breast Cancer</option>
+          <option value="C">C - Personal past history</option>
         </select>
+
+        <!-- MULTI SELECT: SKIN CHANGES -->
+        <fieldset>
+          <legend>Skin Changes (Select all that apply)</legend>
+
+          <label><input type="checkbox" name="skin_changes" value="warmth"> Warmth</label><br>
+          <label><input type="checkbox" name="skin_changes" value="redness"> Redness</label><br>
+          <label><input type="checkbox" name="skin_changes" value="peau_dorange"> Peau d’orange</label><br>
+          <label><input type="checkbox" name="skin_changes" value="skin_retraction"> Skin Retraction</label><br>
+          <label><input type="checkbox" name="skin_changes" value="skin_thickening"> Skin Thickening</label>
+
+        </fieldset>
+
+        <br>
+
+        <!-- MULTI SELECT: ADDITIONAL SIGNS -->
+        <fieldset>
+          <legend>Select Applicable (Choose all that apply)</legend>
+
+          <label><input type="checkbox" name="signs" value="shadowing"> Shadowing</label><br>
+          <label><input type="checkbox" name="signs" value="halo"> Bright rim around tumor (Halo / Echogenic rim)</label><br>
+          <label><input type="checkbox" name="signs" value="nipple_retraction"> Nipple retraction</label><br>
+          <label><input type="checkbox" name="signs" value="bloody_discharge"> Bloody nipple discharge</label><br>
+          <label><input type="checkbox" name="signs" value="milky_discharge"> Clear milky nipple discharge</label><br>
+          <label><input type="checkbox" name="signs" value="posterior_enhancement"> Brighter surroundings (posterior acoustic enhancement)</label><br>
+          <label><input type="checkbox" name="signs" value="trauma"> Recent breast injury / trauma</label>
+
+        </fieldset>
+
+        <br>
 
         <label for="shape">Shape:</label>
         <select id="shape" name="shape" required>
@@ -86,6 +100,8 @@
           <option value="C">C - irregular</option>
           <option value="D">D - not applicable</option>
         </select>
+
+        <br><br>
 
         <button type="submit">Predict Risk</button>
 
