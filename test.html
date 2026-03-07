@@ -25,18 +25,20 @@
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" required />
 
-        <label for="area">Approximate area(cm) of cancer:</label>
-        <select id="area" name="area">
-          <option value="<50">50s</option>
-          <option value="49> area > 40">40s</option>
-          <option value="39> area > 30">30s</option>
-          <option value="29> area > 20">20s</option>
-          <option value="19> area > 10">10s</option>
-          <option value="9> area > 0.1">40s</option>
-        </select>
+        <label for="tissue-composition">Tissue Composition:</label>
+        <input type="number" id="tissue-composition" name="tissue-composition" required />
 
-        <label for="mass-size">Tumor/Mass Size (if applicable):</label>
-        <input type="text" id="mass-size" name="mass-size" />
+        <label for="visual-signs">Visual Signs:</label>
+        <input type="number" id="visual-signs" name="visual-signs" required />
+
+        <label for="fam-hist">Family History:</label>
+        <input type="number" id="fam-hist" name="fam-hist" required />
+
+        <label for="HRT-BC">Hormonal Replacement Therapy (HRT) or Birth Control:</label>
+        <input type="number" id="HRT-BC" name="HRT-BC" required />
+        
+        <label for="shape">Shape:</label>
+        <input type="number" id="shape" name="shape" required />
 
         <button type="submit">Predict Risk</button>
       </form>
