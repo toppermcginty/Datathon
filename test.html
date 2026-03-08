@@ -7,155 +7,148 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Verification Test</h1>
-  </header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="test.html">Test</a>
-    <a href="research.html">Research</a>
-    <a href="team.html">Team</a>
-  </nav>
+<header>
+  <h1>Verification Test</h1>
+</header>
 
-  <main>
-    <section>
-      <h2>Enter Patient Information</h2>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="test.html">Test</a>
+  <a href="research.html">Research</a>
+  <a href="team.html">Team</a>
+</nav>
 
-      <form>
+<main>
+<section>
 
-        <!-- IMAGE DROPBOX -->
-        <label>Upload Mammogram Image:</label>
+<h2>Enter Patient Information</h2>
 
-        <div id="drop-zone">
-          <p>Drag & drop an image here or click to upload</p>
-          <input type="file" id="image-upload" accept="image/*">
-        </div>
+<form action="results.html" method="GET">
 
-        <div id="preview"></div>
+<!-- IMAGE DROPBOX -->
+<label>Upload Mammogram Image:</label>
 
-        <br>
+<div id="drop-zone">
+  <p>Drag & drop an image here or click to upload</p>
+  <input type="file" id="image-upload" accept="image/*">
+</div>
 
-        <label for="size">Size (mm):</label>
-        <input type="number" id="size" name="size" required />
+<div id="preview"></div>
 
-        <label for="age">Age:</label>
-        <select id="age" name="age" required>
-          <option value="">Select</option>
-          <option value="A"> > 50 years old</option>
-          <option value="B"> 40–50 years old</option>
-          <option value="C"> < 40 years old</option>
-        </select>
+<br>
 
-        <label for="tumour-edge">Tumour Edge:</label>
-        <select id="tumour-edge" name="tumour-edge" required>
-          <option value="">Select</option>
-          <option value="D"> Irregular edges (not circumscribed - indistinct)</option>
-          <option value="E"> Smoothly defined edges (circumscribed)</option>
-        </select>
+<label for="size">Size(mm):</label>
+<input type="number" id="size" name="size" required />
 
-        <label for="fam-hist">Family History:</label>
-        <select id="fam-hist" name="fam-hist" required>
-          <option value="">Select</option>
-          <option value="F"> None</option>
-          <option value="G"> Family history of Breast Cancer</option>
-          <option value="H"> Personal past history</option>
-        </select>
+<label for="age">Age:</label>
+<select id="age" name="age" required>
+<option value="">Select</option>
+<option value="A">A - > 50 years old</option>
+<option value="B">B - 40-50 years old</option>
+<option value="C">C - < 40 years old</option>
+</select>
 
-        <!-- MULTI SELECT: SKIN CHANGES -->
-        <fieldset>
-          <legend>Skin Changes (Select all that apply)</legend>
+<label for="tumour-edge">Tumour Edge:</label>
+<select id="tumour-edge" name="tumour-edge" required>
+<option value="">Select</option>
+<option value="A">A - Irregular edges</option>
+<option value="B">B - Smooth edges</option>
+</select>
 
-          <label><input type="checkbox" name="skin_changes" value="warmth"> Warmth</label><br>
-          <label><input type="checkbox" name="skin_changes" value="redness"> Redness</label><br>
-          <label><input type="checkbox" name="skin_changes" value="peau_dorange"> Peau d’orange</label><br>
-          <label><input type="checkbox" name="skin_changes" value="skin_retraction"> Skin Retraction</label><br>
-          <label><input type="checkbox" name="skin_changes" value="skin_thickening"> Skin Thickening</label>
+<label for="fam-hist">Family History:</label>
+<select id="fam-hist" name="fam-hist" required>
+<option value="">Select</option>
+<option value="A">A - None</option>
+<option value="B">B - Family history of Breast Cancer</option>
+<option value="C">C - Personal past history</option>
+</select>
 
-        </fieldset>
+<!-- SKIN CHANGES -->
+<fieldset>
 
-        <br>
+<legend>Skin Changes (Select all that apply)</legend>
 
-        <!-- MULTI SELECT: ADDITIONAL SIGNS -->
-        <fieldset>
-          <legend>Select Applicable (Choose all that apply)</legend>
+<label><input type="checkbox" name="skin_changes" value="warmth"> Warmth</label><br>
+<label><input type="checkbox" name="skin_changes" value="redness"> Redness</label><br>
+<label><input type="checkbox" name="skin_changes" value="peau_dorange"> Peau d’orange</label><br>
+<label><input type="checkbox" name="skin_changes" value="skin_retraction"> Skin Retraction</label><br>
+<label><input type="checkbox" name="skin_changes" value="skin_thickening"> Skin Thickening</label>
 
-          <label><input type="checkbox" name="signs" value="shadowing"> Shadowing</label><br>
-          <label><input type="checkbox" name="signs" value="halo"> Bright rim around tumor (Halo / Echogenic rim)</label><br>
-          <label><input type="checkbox" name="signs" value="nipple_retraction"> Nipple retraction</label><br>
-          <label><input type="checkbox" name="signs" value="bloody_discharge"> Bloody nipple discharge</label><br>
-          <label><input type="checkbox" name="signs" value="milky_discharge"> Clear milky nipple discharge</label><br>
-          <label><input type="checkbox" name="signs" value="posterior_enhancement"> Brighter surroundings (posterior acoustic enhancement)</label><br>
-          <label><input type="checkbox" name="signs" value="trauma"> Recent breast injury / trauma</label>
+</fieldset>
 
-        </fieldset>
+<br>
 
-        <br>
+<!-- ADDITIONAL SIGNS -->
+<fieldset>
 
-        <label for="shape">Shape:</label>
-        <select id="shape" name="shape" required>
-          <option value="">Select</option>
-          <option value="I">Oval</option>
-          <option value="J">Round</option>
-          <option value="K">Irregular</option>
-          <option value="L">Not Applicable</option>
-        </select>
+<legend>Select Applicable</legend>
 
-        <br><br>
+<label><input type="checkbox" name="signs" value="shadowing"> Shadowing</label><br>
+<label><input type="checkbox" name="signs" value="halo"> Bright rim around tumor</label><br>
+<label><input type="checkbox" name="signs" value="nipple_retraction"> Nipple retraction</label><br>
+<label><input type="checkbox" name="signs" value="bloody_discharge"> Bloody nipple discharge</label><br>
+<label><input type="checkbox" name="signs" value="milky_discharge"> Clear milky nipple discharge</label><br>
+<label><input type="checkbox" name="signs" value="posterior_enhancement"> Brighter surroundings</label><br>
+<label><input type="checkbox" name="signs" value="trauma"> Recent Breast injury / trauma</label>
 
-        <button type="submit">Predict Risk</button>
+</fieldset>
 
-      </form>
+<br>
 
-      <p class="note">
-        This tool is for educational/research purposes only and does not replace medical advice.
-      </p>
-    </section>
-  </main>
+<label for="shape">Shape:</label>
+<select id="shape" name="shape" required>
+<option value="">Select</option>
+<option value="A">A - oval</option>
+<option value="B">B - round</option>
+<option value="C">C - irregular</option>
+<option value="D">D - not applicable</option>
+</select>
 
-  <footer>
-    <p>© 2026 Breast Cancer Risk Project</p>
-  </footer>
+<br><br>
 
-  <script>
-    const dropZone = document.getElementById("drop-zone");
-    const fileInput = document.getElementById("image-upload");
-    const preview = document.getElementById("preview");
+<button type="submit">Predict Risk</button>
 
-    dropZone.addEventListener("click", () => fileInput.click());
+</form>
 
-    fileInput.addEventListener("change", function () {
-      showImage(this.files[0]);
-    });
+<p class="note">
+This tool is for educational/research purposes only and does not replace medical advice.
+</p>
 
-    dropZone.addEventListener("dragover", function (e) {
-      e.preventDefault();
-      dropZone.style.background = "#ffe6f0";
-    });
+</section>
+</main>
 
-    dropZone.addEventListener("dragleave", function () {
-      dropZone.style.background = "#fafafa";
-    });
+<footer>
+<p>© 2026 Breast Cancer Risk Project</p>
+</footer>
 
-    dropZone.addEventListener("drop", function (e) {
-      e.preventDefault();
-      dropZone.style.background = "#fafafa";
+<script>
 
-      const file = e.dataTransfer.files[0];
-      fileInput.files = e.dataTransfer.files;
-      showImage(file);
-    });
+const dropZone = document.getElementById("drop-zone");
+const fileInput = document.getElementById("image-upload");
+const preview = document.getElementById("preview");
 
-    function showImage(file) {
-      preview.innerHTML = "";
-      const img = document.createElement("img");
-      img.src = URL.createObjectURL(file);
-      img.style.maxWidth = "300px";
-      img.style.marginTop = "10px";
-      img.style.borderRadius = "8px";
-      preview.appendChild(img);
-    }
-  </script>
+dropZone.addEventListener("click", () => fileInput.click());
+
+fileInput.addEventListener("change", function(){
+showImage(this.files[0]);
+});
+
+function showImage(file){
+
+preview.innerHTML = "";
+
+const img = document.createElement("img");
+
+img.src = URL.createObjectURL(file);
+
+img.style.maxWidth = "300px";
+
+preview.appendChild(img);
+
+}
+
+</script>
 
 </body>
 </html>
