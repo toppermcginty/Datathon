@@ -58,7 +58,7 @@ class Patient:
             elif 'family history' in symptoms : self.score += 10
             elif 'breast injury' in symptoms : self.score += -10
             elif 'nipple discharge' in symptoms : self.score += 15 # ASK AMYAH CAUSE ITS NOT LABLED AS BLOODY OR MILKY !!!!!!!!!!!!!!!!!!!!!
-            
+            elif 'lactating' in symptoms : self.score += -10
 
         if self.age and self.age != 'not available':
             age = float(self.age)
@@ -73,7 +73,7 @@ class Patient:
             elif 'yes' in skin_thickening : self.score += 20
             if 'warmth' in signs : self.score += 15
             if 'redness' in signs : self.score += 15
-            if 'orange' in signs : self.score += 25
+            if 'Peau dorange' in signs : self.score += 25
             if 'skin retraction' in signs : self.score += 20
             if 'nipple retraction' in signs : self.score += 25
 
@@ -92,13 +92,6 @@ class Patient:
             halo = str(self.halo)
             if 'yes' in halo : self.score += 25
             elif 'no' in halo : self.score += 0
-
-        
-        # comfermation score additive 25 points, USELESS delete, would like just mess up the averages!!!!!!!!!!!
-        if self.classification:
-            if 'malignant' in str(self.classification).lower():
-                self.score += 25
-        return self.score
 
 def load_patients():
     patients = []
@@ -188,6 +181,8 @@ def calculate_form_score(form_data):
                     score += -10
                 elif symptom == 'nipple_discharge':
                     score += 15
+                elif symptom == 'lactating':
+                    score += -10
         else:
             # Single symptom
             if symptoms == 'family_history':
@@ -206,7 +201,7 @@ def calculate_form_score(form_data):
                     score += 15
                 elif sign == 'redness':
                     score += 15
-                elif sign == 'orange_peel':
+                elif sign == 'Peau dorange':
                     score += 25
                 elif sign == 'skin_retraction':
                     score += 20
@@ -218,7 +213,7 @@ def calculate_form_score(form_data):
                 score += 15
             elif signs == 'redness':
                 score += 15
-            elif signs == 'orange_peel':
+            elif signs == 'Peau dorange':
                 score += 25
             elif signs == 'skin_retraction':
                 score += 20
@@ -364,19 +359,27 @@ def format_patient_as_simple_dict(patient):                                     
         'halo': patient.halo if patient.halo and patient.halo != 'not applicable' else ''
     }
 
+
 def main():
+
+
     patients = load_patients()
     if not patients:
         print(json.dumps({"error": "No patients loaded from database"}))
         sys.exit(1)
 
     # Read JSON from stdin                                 git bash for gabby
-    try:
-        json_input = sys.stdin.read()
-        if not json_input:
-            print(json.dumps({"error": "No JSON input provided"}))
-            sys.exit(1)
+    input_filename = os.path.join("inputs", "form_data.json")
     
+
+    try:
+        # OPEN the file and READ its contents
+        with open(input_filename, 'r') as f:
+            json_input = f.read()  # This reads the ACTUAL file content
+        
+        if not json_input:
+            print(json.dumps({"error": f"File {input_filename} is empty"}))
+            sys.exit(1)
         form_data = json.loads(json_input)
     except json.JSONDecodeError as e:
         print(json.dumps({"error": f"Invalid JSON: {str(e)}"}))
