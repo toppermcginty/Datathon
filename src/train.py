@@ -109,9 +109,9 @@ trainSteps = len(trainDS) // config.BATCH_SIZE
 valSteps = len(testDS) // config.BATCH_SIZE
 # create data loaders
 trainLoader = DataLoader(trainDS, batch_size=config.BATCH_SIZE,
-	shuffle=True, num_workers=config.os.cpu_count(), pin_memory=config.PIN_MEMORY)
+	shuffle=True, num_workers=0, pin_memory=config.PIN_MEMORY)
 testLoader = DataLoader(testDS, batch_size=config.BATCH_SIZE,
-	num_workers=os.cpu_count(), pin_memory=config.PIN_MEMORY)
+	num_workers=0, pin_memory=config.PIN_MEMORY)
 
 # write the testing image paths to disk so that we can use then
 # when evaluating/testing our object detector

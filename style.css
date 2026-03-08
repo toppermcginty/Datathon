@@ -141,3 +141,12 @@ color:#555;
   display: block;
   margin: 0 auto 10px auto; /* centers the photo */
 }
+
+.team-photo {
+  width: 150px;        /* same width for all photos */
+  height: 150px;       /* same height for all photos */
+  object-fit: cover;   /* crops images so they fill the circle */
+  border-radius: 50%;  /* makes them circular */
+  display: block;
+  margin: 0 auto 10px auto; /* centers the photo */
+}

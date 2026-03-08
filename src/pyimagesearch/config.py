@@ -7,7 +7,7 @@ BASE_PATH = "dataset"
 IMAGES_PATH = os.path.sep.join([BASE_PATH, "images"])
 ANNOTS_PATH = os.path.sep.join([BASE_PATH, "annotations"])
 # define the path to the base output directory
-BASE_OUTPUT = "output"
+BASE_OUTPUT = "src/output"
 # define the path to the output model, label encoder, plots output
 # directory, and testing image paths
 MODEL_PATH = os.path.sep.join([BASE_OUTPUT, "detector.pth"])
