@@ -58,7 +58,7 @@ class Patient:
             elif 'family history' in symptoms : self.score += 10
             elif 'breast injury' in symptoms : self.score += -10
             elif 'nipple discharge' in symptoms : self.score += 15 # ASK AMYAH CAUSE ITS NOT LABLED AS BLOODY OR MILKY !!!!!!!!!!!!!!!!!!!!!
-            
+            elif 'lactating' in symptoms : self.score += -10
 
         if self.age and self.age != 'not available':
             age = float(self.age)
@@ -73,7 +73,7 @@ class Patient:
             elif 'yes' in skin_thickening : self.score += 20
             if 'warmth' in signs : self.score += 15
             if 'redness' in signs : self.score += 15
-            if 'orange' in signs : self.score += 25
+            if 'Peau dorange' in signs : self.score += 25
             if 'skin retraction' in signs : self.score += 20
             if 'nipple retraction' in signs : self.score += 25
 
@@ -92,13 +92,6 @@ class Patient:
             halo = str(self.halo)
             if 'yes' in halo : self.score += 25
             elif 'no' in halo : self.score += 0
-
-        
-        # comfermation score additive 25 points, USELESS delete, would like just mess up the averages!!!!!!!!!!!
-        if self.classification:
-            if 'malignant' in str(self.classification).lower():
-                self.score += 25
-        return self.score
 
 def load_patients():
     patients = []
@@ -188,6 +181,8 @@ def calculate_form_score(form_data):
                     score += -10
                 elif symptom == 'nipple_discharge':
                     score += 15
+                elif symptom == 'lactating':
+                    score += -10
         else:
             # Single symptom
             if symptoms == 'family_history':
@@ -206,7 +201,7 @@ def calculate_form_score(form_data):
                     score += 15
                 elif sign == 'redness':
                     score += 15
-                elif sign == 'orange_peel':
+                elif sign == 'Peau dorange':
                     score += 25
                 elif sign == 'skin_retraction':
                     score += 20
@@ -218,7 +213,7 @@ def calculate_form_score(form_data):
                 score += 15
             elif signs == 'redness':
                 score += 15
-            elif signs == 'orange_peel':
+            elif signs == 'Peau dorange':
                 score += 25
             elif signs == 'skin_retraction':
                 score += 20
@@ -417,4 +412,5 @@ def main():
     print(f"Results written to {output_filename}")  # Optional confirmation
 
 if __name__ == "__main__":
+
     main()
