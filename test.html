@@ -26,9 +26,7 @@
 
 <form id="patient-form" style="margin: 0 auto; text-align: center; align-items: center;">
 
-  <!-- EXAMPLE IMAGE SECTION -->
   <div class="upload-example" style="text-align: center;">
-
     <h3>Example Ultrasound Upload</h3>
 
     <p>
@@ -43,10 +41,8 @@
       its segmentation into two classes (b), tumor area 
       (marked in yellow) and areas of other abnormalities (marked in blue).
     </p>
-
   </div>
   
-  <!-- IMAGE DROPBOX -->
   <label>Upload Ultrasound Image:</label>
 
   <div id="drop-zone">
@@ -64,16 +60,16 @@
   <label for="age">Age:</label>
   <select id="age" name="age" required>
     <option value="">Select</option>
-    <option value="A"> &gt; 50 years old</option>
+    <option value="A">&gt; 50 years old</option>
     <option value="B">40-50 years old</option>
-    <option value="C"> &lt; 40 years old</option>
+    <option value="C">&lt; 40 years old</option>
   </select>
 
   <label for="tumour-edge">Tumour Edge:</label>
   <select id="tumour-edge" name="tumour_edge" required>
     <option value="">Select</option>
-    <option value="D"> Irregular edges</option>
-    <option value="E"> Smooth edges</option>
+    <option value="D">Irregular edges</option>
+    <option value="E">Smooth edges</option>
   </select>
 
   <label for="fam-hist">Family History:</label>
@@ -93,10 +89,8 @@
     <option value="M">not applicable</option>
   </select>
 
-  <!-- SKIN CHANGES -->
   <fieldset style="text-align: left; width: 100%; max-width: 400px; margin: 0 auto;">
     <legend>Skin Changes (Select all that apply)</legend>
-
     <label><input type="checkbox" name="skin_changes" value="warmth"> Warmth</label><br>
     <label><input type="checkbox" name="skin_changes" value="redness"> Redness</label><br>
     <label><input type="checkbox" name="skin_changes" value="peau_dorange"> Peau d’orange</label><br>
@@ -106,10 +100,8 @@
 
   <br>
 
-  <!-- ADDITIONAL SIGNS -->
   <fieldset style="text-align: left; width: 100%; max-width: 400px; margin: 0 auto;">
     <legend>Select Applicable</legend>
-
     <label><input type="checkbox" name="signs" value="shadowing"> Shadowing</label><br>
     <label><input type="checkbox" name="signs" value="halo"> Bright rim around tumor</label><br>
     <label><input type="checkbox" name="signs" value="nipple_retraction"> Nipple retraction</label><br>
@@ -133,7 +125,7 @@
 </main>
 
 <footer>
-<p>© 2026 Breast Cancer Risk Project</p>
+  <p>© 2026 Breast Cancer Risk Project</p>
 </footer>
 
 <script>
@@ -190,6 +182,26 @@ function getCheckedValues(name) {
     .map(input => input.value);
 }
 
+/* EDITED: helper function to download any file */
+function downloadFile(blobOrUrl, filename, isBlob = true) {
+  const a = document.createElement("a");
+  a.href = isBlob ? URL.createObjectURL(blobOrUrl) : blobOrUrl;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  if (isBlob) {
+    URL.revokeObjectURL(a.href);
+  }
+}
+
+/* EDITED: helper function to get file extension from uploaded image */
+function getFileExtension(filename) {
+  const parts = filename.split(".");
+  return parts.length > 1 ? parts.pop() : "png";
+}
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -201,29 +213,36 @@ form.addEventListener("submit", function (e) {
 
   const uploadedFile = fileInput.files[0];
 
+  /* EDITED: all question answers go into form_data.json */
   const formData = {
-    image_upload: uploadedFile ? uploadedFile.name : null,
+    image_file_name: uploadedFile ? uploadedFile.name : null,
     size_mm: sizeValue,
     age: document.getElementById("age").value,
     tumour_edge: document.getElementById("tumour-edge").value,
     family_history: document.getElementById("fam-hist").value,
+    shape: document.getElementById("shape").value,
     skin_changes: getCheckedValues("skin_changes"),
-    signs: getCheckedValues("signs"),
-    shape: document.getElementById("shape").value
+    signs: getCheckedValues("signs")
   };
 
+  /* EDITED: download the questions/answers as form_data.json */
   const jsonString = JSON.stringify(formData, null, 2);
-  const blob = new Blob([jsonString], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
+  const jsonBlob = new Blob([jsonString], { type: "application/json" });
+  downloadFile(jsonBlob, "form_data.json", true);
 
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "form_data.json";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  /* EDITED: download the uploaded image as a separate file */
+  if (uploadedFile) {
+    const imageUrl = URL.createObjectURL(uploadedFile);
+    const extension = getFileExtension(uploadedFile.name);
+    downloadFile(imageUrl, "uploaded_ultrasound_image." + extension, false);
 
-  URL.revokeObjectURL(url);
+    setTimeout(() => {
+      URL.revokeObjectURL(imageUrl);
+    }, 1000);
+  }
+
+  /* EDITED: message to user */
+  alert("Downloaded form_data.json and the uploaded image as separate files.");
 });
 </script>
 
