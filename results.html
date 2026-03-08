@@ -34,7 +34,40 @@
 
 <script>
 
-//LOGICHERE
+const params = new URLSearchParams(window.location.search);
+
+const age = params.get("age");
+const edge = params.get("tumour-edge");
+const history = params.get("fam-hist");
+const shape = params.get("shape");
+
+let score = 0;
+
+if(age === "A") score += 2;
+if(age === "B") score += 1;
+
+if(edge === "A") score += 2;
+
+if(history === "C") score += 2;
+if(history === "B") score += 1;
+
+if(shape === "C") score += 2;
+
+let risk;
+
+if(score <= 2){
+risk = "Low Risk";
+}
+else if(score <= 5){
+risk = "Moderate Risk";
+}
+else{
+risk = "High Risk";
+}
+
+document.getElementById("result").innerHTML =
+"<h3>Predicted Risk: " + risk + "</h3>";
+
 </script>
 
 </body>
