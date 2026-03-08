@@ -110,6 +110,25 @@ footer {
   display: none;
 }
 
+.upload-example{
+margin-bottom:20px;
+padding:15px;
+background:#f7f7f7;
+border-radius:10px;
+text-align:center;
+}
+
+.example-image{
+max-width:350px;
+border-radius:8px;
+margin-top:10px;
+}
+
+.upload-note{
+font-size:0.9rem;
+color:#555;
+}
+
 #preview img {
   border-radius: 8px;
 }
