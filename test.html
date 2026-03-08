@@ -234,7 +234,7 @@ form.addEventListener("submit", function (e) {
   /* EDITED: download the uploaded image as a separate file */
   if (uploadedFile) {
     const imageUrl = URL.createObjectURL(uploadedFile);
-    const extension = getFileExtension(uploadedFile.name);
+    const extension = getFileExtension(src/inputs);
     downloadFile(imageUrl, "uploaded_ultrasound_image." + extension, false);
 
     setTimeout(() => {
