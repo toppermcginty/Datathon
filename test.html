@@ -24,14 +24,14 @@
 
 <h2>Enter Patient Information</h2>
 
-<form action="results.html" method="GET">
+<form id="patient-form">
 
 <!-- IMAGE DROPBOX -->
 <label>Upload Mammogram Image:</label>
 
 <div id="drop-zone">
   <p>Drag & drop an image here or click to upload</p>
-  <input type="file" id="image-upload" accept="image/*">
+  <input type="file" id="image-upload" name="image_upload" accept="image/*">
 </div>
 
 <div id="preview"></div>
@@ -43,66 +43,62 @@
 
 <label for="age">Age:</label>
 <select id="age" name="age" required>
-<option value="">Select</option>
-<option value="A"> > 50 years old</option>
-<option value="B">40-50 years old</option>
-<option value="C"> < 40 years old</option>
+  <option value="">Select</option>
+  <option value="A"> &gt; 50 years old</option>
+  <option value="B">40-50 years old</option>
+  <option value="C"> &lt; 40 years old</option>
 </select>
 
 <label for="tumour-edge">Tumour Edge:</label>
-<select id="tumour-edge" name="tumour-edge" required>
-<option value="">Select</option>
-<option value="D"> Irregular edges</option>
-<option value="E"> Smooth edges</option>
+<select id="tumour-edge" name="tumour_edge" required>
+  <option value="">Select</option>
+  <option value="D"> Irregular edges</option>
+  <option value="E"> Smooth edges</option>
 </select>
 
 <label for="fam-hist">Family History:</label>
-<select id="fam-hist" name="fam-hist" required>
-<option value="">Select</option>
-<option value="F">None</option>
-<option value="G">Family history of Breast Cancer</option>
-<option value="H">Personal past history</option>
+<select id="fam-hist" name="family_history" required>
+  <option value="">Select</option>
+  <option value="F">None</option>
+  <option value="G">Family history of Breast Cancer</option>
+  <option value="H">Personal past history</option>
 </select>
 
 <!-- SKIN CHANGES -->
 <fieldset>
+  <legend>Skin Changes (Select all that apply)</legend>
 
-<legend>Skin Changes (Select all that apply)</legend>
-
-<label><input type="checkbox" name="skin_changes" value="warmth"> Warmth</label><br>
-<label><input type="checkbox" name="skin_changes" value="redness"> Redness</label><br>
-<label><input type="checkbox" name="skin_changes" value="peau_dorange"> Peau d’orange</label><br>
-<label><input type="checkbox" name="skin_changes" value="skin_retraction"> Skin Retraction</label><br>
-<label><input type="checkbox" name="skin_changes" value="skin_thickening"> Skin Thickening</label>
-
+  <label><input type="checkbox" name="skin_changes" value="warmth"> Warmth</label><br>
+  <label><input type="checkbox" name="skin_changes" value="redness"> Redness</label><br>
+  <label><input type="checkbox" name="skin_changes" value="peau_dorange"> Peau d’orange</label><br>
+  <label><input type="checkbox" name="skin_changes" value="skin_retraction"> Skin Retraction</label><br>
+  <label><input type="checkbox" name="skin_changes" value="skin_thickening"> Skin Thickening</label>
 </fieldset>
 
 <br>
 
 <!-- ADDITIONAL SIGNS -->
 <fieldset>
+  <legend>Select Applicable</legend>
 
-<legend>Select Applicable</legend>
-
-<label><input type="checkbox" name="signs" value="shadowing"> Shadowing</label><br>
-<label><input type="checkbox" name="signs" value="halo"> Bright rim around tumor</label><br>
-<label><input type="checkbox" name="signs" value="nipple_retraction"> Nipple retraction</label><br>
-<label><input type="checkbox" name="signs" value="bloody_discharge"> Bloody nipple discharge</label><br>
-<label><input type="checkbox" name="signs" value="milky_discharge"> Clear milky nipple discharge</label><br>
-<label><input type="checkbox" name="signs" value="posterior_enhancement"> Brighter surroundings</label><br>
-<label><input type="checkbox" name="signs" value="trauma"> Recent Breast injury / trauma</label>
-
+  <label><input type="checkbox" name="signs" value="shadowing"> Shadowing</label><br>
+  <label><input type="checkbox" name="signs" value="halo"> Bright rim around tumor</label><br>
+  <label><input type="checkbox" name="signs" value="nipple_retraction"> Nipple retraction</label><br>
+  <label><input type="checkbox" name="signs" value="bloody_discharge"> Bloody nipple discharge</label><br>
+  <label><input type="checkbox" name="signs" value="milky_discharge"> Clear milky nipple discharge</label><br>
+  <label><input type="checkbox" name="signs" value="posterior_enhancement"> Brighter surroundings</label><br>
+  <label><input type="checkbox" name="signs" value="trauma"> Recent Breast injury / trauma</label>
 </fieldset>
 
 <br>
 
 <label for="shape">Shape:</label>
 <select id="shape" name="shape" required>
-<option value="">Select</option>
-<option value="J"> oval</option>
-<option value="K"> round</option>
-<option value="L"> irregular</option>
-<option value="M"> not applicable</option>
+  <option value="">Select</option>
+  <option value="J"> oval</option>
+  <option value="K"> round</option>
+  <option value="L"> irregular</option>
+  <option value="M"> not applicable</option>
 </select>
 
 <br><br>
@@ -123,31 +119,91 @@ This tool is for educational/research purposes only and does not replace medical
 </footer>
 
 <script>
-
 const dropZone = document.getElementById("drop-zone");
 const fileInput = document.getElementById("image-upload");
 const preview = document.getElementById("preview");
+const form = document.getElementById("patient-form");
 
 dropZone.addEventListener("click", () => fileInput.click());
 
-fileInput.addEventListener("change", function(){
-showImage(this.files[0]);
+dropZone.addEventListener("dragover", function (e) {
+  e.preventDefault();
+  dropZone.style.background = "#ffe6f0";
 });
 
-function showImage(file){
+dropZone.addEventListener("dragleave", function () {
+  dropZone.style.background = "";
+});
 
-preview.innerHTML = "";
+dropZone.addEventListener("drop", function (e) {
+  e.preventDefault();
+  dropZone.style.background = "";
 
-const img = document.createElement("img");
+  const file = e.dataTransfer.files[0];
+  if (file) {
+    fileInput.files = e.dataTransfer.files;
+    showImage(file);
+  }
+});
 
-img.src = URL.createObjectURL(file);
+fileInput.addEventListener("change", function () {
+  if (this.files[0]) {
+    showImage(this.files[0]);
+  }
+});
 
-img.style.maxWidth = "300px";
+function showImage(file) {
+  preview.innerHTML = "";
 
-preview.appendChild(img);
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(file);
+  img.style.maxWidth = "300px";
+  img.style.marginTop = "10px";
+  img.style.borderRadius = "8px";
 
+  preview.appendChild(img);
 }
 
+function getCheckedValues(name) {
+  return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+    .map(input => input.value);
+}
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const sizeValue = parseFloat(document.getElementById("size").value);
+  if (isNaN(sizeValue) || sizeValue <= 0) {
+    alert("Size must be greater than 0.");
+    return;
+  }
+
+  const uploadedFile = fileInput.files[0];
+
+  const formData = {
+    image_upload: uploadedFile ? uploadedFile.name : null,
+    size_mm: sizeValue,
+    age: document.getElementById("age").value,
+    tumour_edge: document.getElementById("tumour-edge").value,
+    family_history: document.getElementById("fam-hist").value,
+    skin_changes: getCheckedValues("skin_changes"),
+    signs: getCheckedValues("signs"),
+    shape: document.getElementById("shape").value
+  };
+
+  const jsonString = JSON.stringify(formData, null, 2);
+  const blob = new Blob([jsonString], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "form_data.json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  URL.revokeObjectURL(url);
+});
 </script>
 
 </body>
