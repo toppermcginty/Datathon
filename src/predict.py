@@ -70,7 +70,6 @@ for imagePath in imagePaths:
     with open('ai_output.json', 'w') as f:
         output = json.dumps(data)
         f.write(output)
-"""
     # resize the original image such that it fits on our screen, and
     # grab its dimensions
     orig = imutils.resize(orig, width=600)
@@ -90,4 +89,3 @@ for imagePath in imagePaths:
     # show the output image
     cv2.imshow("Output", orig)
     cv2.waitKey(0)
-"""
