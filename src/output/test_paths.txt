@@ -1,0 +1,45 @@
+dataset/images/Intraductal papilloma/case151.png
+dataset/images/Fibrocystic change/case168.png
+dataset/images/Invasive micropapillary carcinoma/case109.png
+dataset/images/Fibroadenoma/case207.png
+dataset/images/Fibrosclerosis/case014.png
+dataset/images/Benign mammary dysplasia/case131.png
+dataset/images/Ductal carcinoma in situ (DCIS)/case199.png
+dataset/images/Benign mammary dysplasia/case246.png
+dataset/images/Invasive carcinoma of no special type (NST)/case087.png
+dataset/images/Mastitis/case162.png
+dataset/images/Lymphoma/case117.png
+dataset/images/Benign mammary dysplasia/case033.png
+dataset/images/Invasive lobular carcinoma/case221.png
+dataset/images/Invasive carcinoma of no special type (NST)/case010.png
+dataset/images/Phyllodes tumor/case078.png
+dataset/images/Ductal carcinoma in situ (DCIS)/case255.png
+dataset/images/Fibroadenoma/case202.png
+dataset/images/Fibroadenoma/case018.png
+dataset/images/Fibroadenosis/case229.png
+dataset/images/Phyllodes tumor/case077.png
+dataset/images/Atypical lobular hyperplasia (ALH)/case220.png
+dataset/images/Invasive lobular carcinoma/case113.png
+dataset/images/Invasive carcinoma of no special type (NST)/case248.png
+dataset/images/Tubular carcinoma/case026.png
+dataset/images/Invasive carcinoma of no special type (NST)/case147.png
+dataset/images/Benign mammary dysplasia/case232.png
+dataset/images/Invasive carcinoma of no special type (NST)/case114.png
+dataset/images/Benign mammary dysplasia/case015.png
+dataset/images/Invasive lobular carcinoma/case053.png
+dataset/images/Invasive carcinoma of no special type (NST)/case174.png
+dataset/images/Invasive carcinoma of no special type (NST)/case128.png
+dataset/images/Invasive carcinoma of no special type (NST)/case066.png
+dataset/images/Invasive lobular carcinoma/case125.png
+dataset/images/Solid papillary carcinoma in situ/case228.png
+dataset/images/Invasive carcinoma of no special type (NST)/case086.png
+dataset/images/Fibroadenoma/case126.png
+dataset/images/Ductal carcinoma in situ (DCIS)/case094.png
+dataset/images/Invasive carcinoma of no special type (NST)/case158.png
+dataset/images/Fibroadenoma/case161.png
+dataset/images/Usual ductal hyperplasia (UDH)/case119.png
+dataset/images/Invasive carcinoma of no special type (NST)/case102.png
+dataset/images/Invasive carcinoma of no special type (NST)/case226.png
+dataset/images/Fibroadenoma/case139.png
+dataset/images/Invasive micropapillary carcinoma/case112.png
+dataset/images/Benign mammary dysplasia/case092.png
