@@ -359,19 +359,27 @@ def format_patient_as_simple_dict(patient):                                     
         'halo': patient.halo if patient.halo and patient.halo != 'not applicable' else ''
     }
 
+
 def main():
+
+
     patients = load_patients()
     if not patients:
         print(json.dumps({"error": "No patients loaded from database"}))
         sys.exit(1)
 
     # Read JSON from stdin                                 git bash for gabby
-    try:
-        json_input = sys.stdin.read()
-        if not json_input:
-            print(json.dumps({"error": "No JSON input provided"}))
-            sys.exit(1)
+    input_filename = os.path.join("inputs", "form_data.json")
     
+
+    try:
+        # OPEN the file and READ its contents
+        with open(input_filename, 'r') as f:
+            json_input = f.read()  # This reads the ACTUAL file content
+        
+        if not json_input:
+            print(json.dumps({"error": f"File {input_filename} is empty"}))
+            sys.exit(1)
         form_data = json.loads(json_input)
     except json.JSONDecodeError as e:
         print(json.dumps({"error": f"Invalid JSON: {str(e)}"}))
@@ -412,5 +420,4 @@ def main():
     print(f"Results written to {output_filename}")  # Optional confirmation
 
 if __name__ == "__main__":
-
     main()
