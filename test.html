@@ -26,9 +26,7 @@
 
 <form id="patient-form" style="margin: 0 auto; text-align: center; align-items: center;">
 
-  <!-- EXAMPLE IMAGE SECTION -->
   <div class="upload-example" style="text-align: center;">
-
     <h3>Example Ultrasound Upload</h3>
 
     <p>
@@ -36,22 +34,25 @@
       The image should clearly show the tumor region.
     </p>
 
-    <img src="BCimage.webp" alt="BCimage.webp" class="example-image" style="display: block; margin: 0 auto; max-width: 300px;">
+    <img
+      src="BCimage.webp"
+      alt="Example ultrasound"
+      class="example-image"
+      style="display: block; margin: 0 auto; max-width: 300px;"
+    >
 
     <p class="upload-note">
-      Fig 1: An example of a breast lesion image (a) and 
-      its segmentation into two classes (b), tumor area 
+      Fig 1: An example of a breast lesion image (a) and
+      its segmentation into two classes (b), tumor area
       (marked in yellow) and areas of other abnormalities (marked in blue).
     </p>
-
   </div>
-  
-  <!-- IMAGE DROPBOX -->
+
   <label>Upload Ultrasound Image:</label>
 
   <div id="drop-zone">
     <p>Drag & drop an image here or click to upload</p>
-    <input type="file" id="image-upload" name="image_upload" accept="image/*">
+    <input type="file" id="image-upload" name="image_upload" accept="image/*" required>
   </div>
 
   <div id="preview" style="text-align: center;"></div>
@@ -64,16 +65,16 @@
   <label for="age">Age:</label>
   <select id="age" name="age" required>
     <option value="">Select</option>
-    <option value="A"> &gt; 50 years old</option>
+    <option value="A">&gt; 50 years old</option>
     <option value="B">40-50 years old</option>
-    <option value="C"> &lt; 40 years old</option>
+    <option value="C">&lt; 40 years old</option>
   </select>
 
   <label for="tumour-edge">Tumour Edge:</label>
   <select id="tumour-edge" name="tumour_edge" required>
     <option value="">Select</option>
-    <option value="D"> Irregular edges</option>
-    <option value="E"> Smooth edges</option>
+    <option value="D">Irregular edges</option>
+    <option value="E">Smooth edges</option>
   </select>
 
   <label for="fam-hist">Family History:</label>
@@ -93,7 +94,6 @@
     <option value="M">not applicable</option>
   </select>
 
-  <!-- SKIN CHANGES -->
   <fieldset style="text-align: left; width: 100%; max-width: 400px; margin: 0 auto;">
     <legend>Skin Changes (Select all that apply)</legend>
 
@@ -106,7 +106,6 @@
 
   <br>
 
-  <!-- ADDITIONAL SIGNS -->
   <fieldset style="text-align: left; width: 100%; max-width: 400px; margin: 0 auto;">
     <legend>Select Applicable</legend>
 
@@ -122,18 +121,20 @@
   <br><br>
 
   <button type="submit">Predict Risk</button>
+  <p id="status-message" style="margin-top: 16px; font-weight: bold;"></p>
 
 </form>
 
 <p class="note" style="text-align: center;">
-  This tool is for educational/research purposes only and does not replace medical advice.
+  This tool is developed for radiologists and medical professionals only as a double-check for false negatives.
+  This tool does not replace medical diagnosis or advice.
 </p>
 
 </section>
 </main>
 
 <footer>
-<p>© 2026 Breast Cancer Risk Project</p>
+  <p>© 2026 Breast Cancer Risk Project</p>
 </footer>
 
 <script>
@@ -141,6 +142,7 @@ const dropZone = document.getElementById("drop-zone");
 const fileInput = document.getElementById("image-upload");
 const preview = document.getElementById("preview");
 const form = document.getElementById("patient-form");
+const statusMessage = document.getElementById("status-message");
 
 dropZone.addEventListener("click", () => fileInput.click());
 
@@ -190,7 +192,7 @@ function getCheckedValues(name) {
     .map(input => input.value);
 }
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const sizeValue = parseFloat(document.getElementById("size").value);
@@ -200,30 +202,46 @@ form.addEventListener("submit", function (e) {
   }
 
   const uploadedFile = fileInput.files[0];
+  if (!uploadedFile) {
+    alert("Please upload an ultrasound image.");
+    return;
+  }
 
-  const formData = {
-    image_upload: uploadedFile ? uploadedFile.name : null,
+  const formDataJson = {
+    image_upload: uploadedFile.name,
     size_mm: sizeValue,
     age: document.getElementById("age").value,
     tumour_edge: document.getElementById("tumour-edge").value,
     family_history: document.getElementById("fam-hist").value,
+    shape: document.getElementById("shape").value,
     skin_changes: getCheckedValues("skin_changes"),
-    signs: getCheckedValues("signs"),
-    shape: document.getElementById("shape").value
+    signs: getCheckedValues("signs")
   };
 
-  const jsonString = JSON.stringify(formData, null, 2);
-  const blob = new Blob([jsonString], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
+  const payload = new FormData();
+  payload.append("image", uploadedFile);
+  payload.append("form_data", JSON.stringify(formDataJson));
 
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "form_data.json";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  statusMessage.textContent = "Processing image and generating results...";
 
-  URL.revokeObjectURL(url);
+  try {
+    const response = await fetch("/process-form", {
+      method: "POST",
+      body: payload
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || "Processing failed.");
+    }
+
+    statusMessage.textContent = "Results ready. Opening results page...";
+    window.location.href = "results.html";
+  } catch (error) {
+    statusMessage.textContent = "";
+    alert("Error: " + error.message);
+  }
 });
 </script>
 
